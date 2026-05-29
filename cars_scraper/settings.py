@@ -96,3 +96,16 @@ DOWNLOAD_DELAY = 1
 
 # Set settings whose default value is deprecated to a future-proof value
 FEED_EXPORT_ENCODING = "utf-8"
+
+FEEDS = {
+    "adverts.json": {
+        "format": "json",
+        "encoding": "utf-8",
+        "item_classes": ["cars_scraper.items.BmwAdvertItem"],
+    },
+    "specs.json": {
+        "format": "json",
+        "encoding": "utf-8",
+        "item_classes": ["cars_scraper.items.BmwSpecItem"],
+    },
+}
