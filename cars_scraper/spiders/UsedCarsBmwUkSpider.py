@@ -4,6 +4,11 @@ from cars_scraper.items import BmwAdvertItem, BmwSpecItem
 
 BASE_URL = "https://usedcars.bmw.co.uk"
 
+SPEC_FIELDS = [
+    "mileage", "registered", "engine", "range",
+    "exterior", "fuel", "transmission", "registration", "upholstery",
+]
+
 
 class UsedCarsBmwUkSpider(scrapy.Spider):
     name = "UsedCarsBmwUkSpider"
@@ -25,12 +30,12 @@ class UsedCarsBmwUkSpider(scrapy.Spider):
 
     def parse_listing(self, response):
         for advert in response.css(".uvl-c-advert-overview"):
-            title = advert.css(".uvl-c-advert-overview__title a::text").get("").strip()
+            name = advert.css(".uvl-c-advert-overview__title a::text").get("").strip()
             model = advert.css(".uvl-c-advert-overview__model::text").get("").strip()
             href = advert.css(".uvl-c-advert-overview__title a::attr(href)").get("")
             link = response.urljoin(href)
 
-            yield BmwAdvertItem(title=title, model=model, link=link)
+            yield BmwAdvertItem(name=name, model=model, link=link)
 
             yield scrapy.Request(
                 link,
@@ -50,7 +55,7 @@ class UsedCarsBmwUkSpider(scrapy.Spider):
         values = [v.strip() for v in values]
 
         item = BmwSpecItem(link=response.meta["link"])
-        for i in range(1, 9):
-            item[f"spec_{i}"] = values[i - 1] if i - 1 < len(values) else ""
+        for i, field in enumerate(SPEC_FIELDS):
+            item[field] = values[i] if i < len(values) else ""
 
         yield item
