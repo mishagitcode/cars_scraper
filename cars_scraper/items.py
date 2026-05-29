@@ -6,7 +6,12 @@
 import scrapy
 
 
-class CarsScraperItem(scrapy.Item):
-    # define the fields for your item here like:
-    # name = scrapy.Field()
-    pass
+class BmwAdvertItem(scrapy.Item):
+    title = scrapy.Field()
+    model = scrapy.Field()
+    spec_1 = scrapy.Field()
+    spec_2 = scrapy.Field()
+    spec_3 = scrapy.Field()
+    spec_4 = scrapy.Field()
+    spec_5 = scrapy.Field()
+    spec_6 = scrapy.Field()
