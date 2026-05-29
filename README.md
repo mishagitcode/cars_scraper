@@ -149,16 +149,6 @@ The spider will create `bmw_cars.sqlite3` automatically and populate both tables
 
 ---
 
-### 4. Exporting to JSON
-
-To export the database contents to `adverts.json` and `specs.json`:
-
-```commandline
-python db_to_json.py
-```
-
----
-
 ## Technologies
 
 - **Python**: Core programming language
