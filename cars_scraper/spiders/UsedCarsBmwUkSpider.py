@@ -2,8 +2,6 @@ import scrapy
 from scrapy_playwright.page import PageMethod
 from cars_scraper.items import BmwAdvertItem, BmwSpecItem
 
-BASE_URL = "https://usedcars.bmw.co.uk"
-
 
 class UsedCarsBmwUkSpider(scrapy.Spider):
     name = "UsedCarsBmwUkSpider"
